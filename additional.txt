@@ -1,0 +1,25 @@
+
+        image for showing image in card
+                            <img src="{{ i.Image.url }}" class="card-img-top" alt="{{ i.M_name }}" style="height: 300px; object-fit: cover;"> 
+
+
+        review showing if with and dict added
+                            <!-- {% if i.id in user_reviews %}
+                                {% with review=user_reviews|dict_value:movie.id %}
+                                    <p><strong>Your Rating:</strong> {{ review.rating }} ⭐</p>
+                                    <a href="{% url 'update_review' review.id %}" class="btn btn-warning">Edit Review</a>
+                                {% endwith %}
+                            {% else %}
+                                <a href="{% url 'add_review' movie.id %}" class="btn btn-primary">Add Review</a>
+                            {% endif %} -->
+
+
+            original for review showing in userpage
+                            <!-- {% for review in user_reviews %}
+                                {% if review.movie_id == i %}
+                                    <p><strong>Your Rating:</strong> {{ review.rating }} ⭐</p>
+                                    <a href="{% url 'update_review' review.id %}" class="btn btn-warning">Edit Review</a>
+                                {% endif %}
+                            {% empty %}
+                                <a href="{% url 'add_review' movie.id %}" class="btn btn-primary">Add Review</a>
+                            {% endfor %} -->
