@@ -39,11 +39,16 @@
         }
 
         .navbar-brand {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             padding: 0;
             margin: 0;
+        }
+
+        .navbar-brand:hover{
+            transform:scale(1.02) translatex(-10px) translateX(10px);
+            transition: transform 0.1s ease;
         }
 
         .nav-link {
@@ -189,6 +194,7 @@
             border-radius: 25px;
             padding: 6px 16px;
             font-size: 0.9rem;
+            color: whitesmoke;
             background: #ff6200;
             border: none;
             transition: all 0.3s ease;
@@ -196,7 +202,7 @@
 
         .btn:hover {
             background: #ff8c00;
-            transform: scale(1.05);
+            transform: scale(1.07);
         }
 
         .welcome-text {
@@ -277,17 +283,20 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg shadow" style="height: 10vh;" id="navbar">
         <div class="container">
-            <a class="navbar-brand " href="#" style="color:  #ff6200;">PopCorn Reviews</a>
+            <a class="navbar-brand " href="" style="color:  #ff6200;">PopCorn Reviews</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-solid fa-house me-2"></i>Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="#">Movies</a>
                     </li>   
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">About</a>
+                        <a href="#" class="nav-link active text-white">Series</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"><i class="fa-solid fa-magnifying-glass fa-sm" style="color: #ffffff;"></i></a>
                     </li>
                     <li class="nav-item dropdown">
                         {% if request.user.is_authenticated %}
@@ -296,7 +305,7 @@
                         </a>
                         {%else%}
                         <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fa-solid fa-user me-2"></i>
+                            <!-- <i class="fa-solid fa-user me-2"></i> -->Join Us
                         </a>
                         {%endif%}
                         <ul class="dropdown-menu">
@@ -341,7 +350,7 @@
         <div class="row justify-content-center">
             {% if messages %}
                 {% for i in messages %}
-                    <div class="text-center alert alert-white">{{i}}</div>
+                    <div class="text-center alert alert-white" style="font-family: 'Times New Roman', Times, serif;">{{i}}</div>
                 {% endfor %}
             {% endif %}
 
@@ -432,7 +441,7 @@
         setTimeout(() => {
             let messages = document.querySelectorAll('.alert');
             messages.forEach(msg => msg.style.display = 'none');
-        }, 4000);
+        }, 5000);
     </script>
 </body>
 </html>

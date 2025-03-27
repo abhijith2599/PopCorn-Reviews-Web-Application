@@ -12,6 +12,14 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
+
+        body {
+            background: #050505;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            margin: 0;
+            overflow-x: hidden;
+        }
         .alert {
             border-radius: 10px;
             font-weight: 500;
@@ -23,20 +31,31 @@
         .font{
             font-family: 'Times New Roman', Times, serif;
         }
+        .btn {
+            border-radius: 25px;
+            color: whitesmoke;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            background: #ff6200;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ff8c00;
+            transform: scale(1.05);
+        }
         
     </style>
 </head>
 
-<body style="background: #C9D6FF;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- ;">
+<body>
 
                             <!-- Navbar -->
 
-    <nav class="navbar navbar-expand-lg shadow ">
+    <nav class="navbar navbar-expand-lg shadow " style="background-color: #111111e7;">
         <div class="container">
-            <a class="navbar-brand fw-bold " href="#" style="font-size: 1.6rem;">PopCorn Review</a>
+            <a class="navbar-brand fw-bold " href="#" style="font-size: 1.6rem; color:  #ff6200;">PopCorn Review</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon "></span>
@@ -46,10 +65,10 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, F
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
 
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{%url 'userpage' %}"><i class="fa-solid fa-house me-3" style="color:  #070707; font-size: 1.1rem;"></i>Home</a>
+                    <a class="nav-link active  text-white" aria-current="page" href="{%url 'userpage' %}"><i class="fa-solid fa-house me-3" style="color:  #e6e4e4; font-size: 1.1rem;"></i>Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#" style="font-size: 1.1rem;">About</a>
+                    <a class="nav-link text-white" href="#" style="font-size: 1.1rem;">About</a>
                   </li>
 
                 </ul>
@@ -62,7 +81,7 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, F
     <div class="container mt-5 font">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card"  style="background: rgba(0,0,0,0.2); width: 100%; max-width: 900px; padding: 20px; border-radius: 30px;">
+                <div class="card"  style="background: rgba(25, 26, 32, 0.578); width: 100%; max-width: 900px; padding: 20px; border-radius: 30px;">
 
                     {%if messages%}
                         {%for i in messages%}
@@ -70,7 +89,7 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, F
                         {%endfor%}
                     {%endif%}
 
-                    <div>
+                    <div  class="text-white">
                         <h2 class="fw-bold text-center txt">LogIn</h2>
                         <div class="card-body">
                             <form action="" method="post" style="font-size: 19px;">
@@ -83,14 +102,14 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, F
                                 {%endfor%}
 
                                 <div class="mt-3 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-sm btn-light">LogIn</button>
+                                    <button type="submit" class="btn btn-sm">LogIn</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-5">
-                    <h4 class="txt fw-bold">New User <a href="{% url 'signup' %}" class="btn btn-sm btn-light">SignUp</a></h4>
+                    <h4 class="txt fw-bold text-white" >New User <a href="{% url 'signup' %}" class="btn btn-sm">SignUp</a></h4>
                 </div>
             </div>
         </div>

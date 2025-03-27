@@ -13,6 +13,10 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
+        body{
+            background:#1a2332            ;
+            /* #011433  #010b1c*/
+        }
         .alert {
             border-radius: 10px;
             font-weight: 500;
@@ -25,16 +29,26 @@
             display: flex;
             gap: 20px;
             padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
             margin: 20px auto;
             max-width: 900px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        
+            background: #00000000; /* Semi-transparent background */
+            backdrop-filter: blur(20px) saturate(90%); /*Blur effect*/
+            
+            border-radius: 12px; /* Optional: smooth edges */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3), 8px 12px 6px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease-in-out; /* Smooth transitions */
+
         }
+        /* .movie-container:hover {
+            background: rgba(29, 44, 68, 0.6);
+            backdrop-filter: blur(35px);
+        } */
+
         .movie-image img {
             max-width: 200px;
             border-radius: 8px;
-            transition:  0.2s ease;
+            transition:  0.2s ease-in;
     
         }
         .movie-image img:hover{
@@ -66,45 +80,128 @@
             transform: scale(1.2);
         }
         .fa-amazon { color: #ff9900; }
-        .fa-apple { color: #333; }
+        .fa-apple { color: #faf5f5; }
         .fa-youtube { color: red; }
         .fa-google-play { color: #34a853; 
         }
-        .txt{
-            color: #191919;
-        }
+        
         .font-size{
             font-size: 1.1rem;
         }
+        .navbar {
+            background: rgba(0, 0, 0, 0.2); /* Light transparent background */
+            backdrop-filter: blur(10px); /* Initial blur effect */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3), 8px 12px 6px rgba(0, 0, 0, 0.15); /* Soft shadow */
+            padding: 10px 20px;
+            position: sticky; /* Sticks on top */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            transition: all 0.3s ease-in-out; /* Smooth transition */
+        }
+
+        footer {
+            background: #1e1c1ca6;
+            padding: 2rem 0;
+            text-align: center;
+            color: #ddd;
+            font-size: 1rem;
+            position: relative;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer a {
+            color: #ff6200;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff8c00;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+        }
+
+        .footer-social {
+            margin-top: 1rem;
+        }
+
+        .footer-social i {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: #ff6200;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-social i:hover {
+            transform: scale(1.2);
+        }
+        .btn {
+            border-radius: 25px;
+            color: whitesmoke;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            background: #ff6200;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ff8c00;
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
 
-<body style="background-color: #efefef;">
+<body >
 
-    <nav class="navbar navbar-expand-lg shadow " style="height: 10vh; background-color: #bfbfbf;" id="navbar">
+    <nav class="navbar navbar-expand-lg shadow " style="height: 10vh;" id="navbar">
         <div class="container">
-            <a class="navbar-brand fw-bold txt" href="#" style="font-size: 1.6rem;">PopCorn Reviews</a>
+            <a class="navbar-brand fw-bold txt" href="#" style="font-size: 1.6rem; color: #ff6200;">PopCorn Reviews</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active txt font-size" aria-current="page" href="{% url 'userpage' %}"><i class="fa-solid fa-house me-2"></i>Home</a>
+                        <a class="nav-link active text-white font-size" aria-current="page" href="{% url 'userpage' %}"><i class="fa-solid fa-house me-2"></i>Home</a>
                     </li>   
-                    <li class="nav-item">
-                        <a class="nav-link txt font-size" href="#">About</a>
-                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link text-white font-size" href="#">About</a>
+                    </li> -->
 
                     <li class="nav-item dropdown" >
 
                         {% if request.user.is_authenticated %}
-                            <a class="nav-link dropdown-toggle txt" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fa-solid fa-user me-2 " style="color: #191919;"></i>{{ request.user.first_name }}
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-user me-2 " style="color: #faf7f7;"></i>{{ request.user.first_name }}
                             </a>
                         {%else%}
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fa-solid fa-user me-2" style="color: #191919;"></i>
+                                <i class="fa-solid fa-user me-2" style="color: #faf7f7;"></i>
                             </a>
                         {%endif%}
 
@@ -145,14 +242,14 @@
 
 
     <div class="container mt-5">
-        
+                        <!-- #12233ed7     style="background-color: #1d2c449d; opacity: 100%;"-->
             <div class="movie-container">
                 <!-- Left Side: Movie Poster & Watch Options -->
                 <div class="movie-image">
                     <img src="{{ movie.Image.url }}" alt="{{ movie.M_name }}">
         
                     <!-- Where to Watch -->
-                    <h4 class="text-center mt-3">Where to Watch</h4>
+                    <h4 class="text-center mt-3 text-white">Where to Watch</h4>
                     <div class="watch-options">
                         <a href="https://www.amazon.com" target="_blank" title="Amazon">
                             <i class="fa-brands fa-amazon"></i>
@@ -170,7 +267,7 @@
                 </div>
         
                 <!-- Right Side: Movie Details -->
-                <div class="movie-details">
+                <div class="movie-details text-white">
                     <h2>{{ movie.M_name }}</h2>
                     <p><strong>Genre:</strong> {{ movie.Genre }}</p>
                     <p><strong>Language:</strong> {{ movie.M_lang }}</p>
@@ -179,18 +276,19 @@
     
                     <!-- Our Rating System -->
                     <div class="rating-box">
-                        <span>⭐ {{ movie.average_rating }}%</span>
+                        PopCorn Rating<br>
+                        <span>⭐ {{ movie.average_rating }}/5</span>
                         <small>({{ all_reviews.count }} Reviews)</small>
                     </div>
                 </div>
             </div>
 
                     <!-- Review section -->
-            <div class="card mb-4 mx-auto">
-                <div class="card-header bg-dark text-white">
-                    <h4>Reviews</h4>
+            <div class="card mb-4 mx-auto text-white" style="background: rgba(0,0,0,0.2);backdrop-filter: blur(20px);">
+                <div class="card-header" style=" background: rgba(255, 255, 255, 0.04);">
+                    <h4  class="text-center">Reviews</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="background: rgba(0, 0, 0, 0.1);">
                     {% if all_reviews %}
                             {% for review in all_reviews %}
                                     <strong>{{ review.user_id.first_name }}</strong>: 
@@ -206,7 +304,7 @@
                                     <p>{{ review.comments }}</p>
                             {% endfor %}
                     {% else %}
-                        <p class="text-muted text-center">No reviews yet. Be the first to review!</p>
+                        <p class="text-muted text-center"><span style="color: whitesmoke;">No reviews yet. Be the first to review!</span></p>
                     {% endif %}
                 </div>
             </div>
@@ -215,9 +313,9 @@
                     <!-- User review form -->
             
             {%if user.is_authenticated%}
-                <div class="card mb-5" style="background: rgba(0,0,0,0.0)">
+                <div class="card mb-5  text-white" style="background: rgba(0,0,0,0.2)">
                     <div class="card-header">
-                        <h3 class="text-center text-danger">{% if user_review %}Update Your Review{% else %}Add a Review{% endif %}</h3>
+                        <h3 class="text-center ">{% if user_review %}Update Your Review{% else %}Add a Review{% endif %}</h3>
                     </div>
                     <div class="card-body">
                         <form method="post">
@@ -240,15 +338,65 @@
                     </div>
                 </div>
             {%else%}
-                <p class="text-center fw-bold mb-5" style="color: orangered;"><a href="{% url 'login' %}" class="btn btn-outline-danger">LogIn</a> to add a review </p>
+                <p class="text-center fw-bold mb-5" style="color: orangered;"><a href="{% url 'login' %}" class="btn btn-sm">LogIn</a> to add a review </p>
             {%endif%}
     </div>
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-content">
+            <p>© 2025 PopCorn Reviews. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>Follow us for the latest movie reviews and updates!</p>
+        </div>
+    </footer>
+    
     <script>
         src="{% static 'js/bootstrap.bundle.min.js' %}"
         setTimeout(function() {
             let messages = document.querySelectorAll('.alert');
             messages.forEach(msg => msg.style.display = 'none');
         }, 3000);
+
+        // window.addEventListener("scroll", function () {
+        // let navbar = document.querySelector(".navbar");
+        // if (window.scrollY > 50) {
+        //     navbar.style.backdropFilter = "blur(20px)"; /* Stronger blur */
+        //     navbar.style.background = "rgba(0, 0, 0, 0.5)"; /* Darker background */
+        // } else {
+        //     navbar.style.backdropFilter = "blur(10px)"; /* Lighter blur */
+        //     navbar.style.background = "rgba(0, 0, 0, 0.2)"; /* More transparent */
+        // }
+        // });
+
+                //Footer scroll behavior
+        let lastScroll = 0;
+        const footer = document.getElementById('footer');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+
+            // Footer: Show when near bottom
+            if (currentScroll + windowHeight >= documentHeight - 50) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+
+            lastScroll = currentScroll;
+        });
+        
     </script>
 </body>
 </html>

@@ -21,19 +21,25 @@ from Movie_App.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
+def redirect_to_home(request):
+    return redirect('userpage')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('PopCornReview/home/',Home_view.as_view(),name='home'),
+
+    path("",redirect_to_home),
+    path('PopCornReview/',Userpage_view.as_view(),name='userpage'),
     
     path('PopCornReview/signup/',UserRegistration_view.as_view(),name='signup'),
     path('PopCornReview/login/',Login_view.as_view(),name='login'),
     path('PopCornReview/logout/',Logout_view.as_view(),name='logout'),
 
-    path('PopCornReview/userpage/',Userpage_view.as_view(),name='userpage'),
     path('PopCornReview/add_review/<int:pk>',AddReview_view.as_view(),name='add_review'),
-    # path('PopCornReview/update_review/<int:pk>',UpdateReview_view.as_view(),name='update_review'),
     path('PopCornReview/delete_review/<int:pk>',DeleteReview_view.as_view(),name='delete')
+
+    # path('PopCornReview/update_review/<int:pk>',UpdateReview_view.as_view(),name='update_review'),
+    # path('PopCornReview/home/',Home_view.as_view(),name='home'),
 
 ]
 

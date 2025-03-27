@@ -28,7 +28,9 @@ from Movie_App.models import *
 
 def is_login(fn):
     def wrapper(request, **kwargs):
+
         if not request.user.is_authenticated:
+
             return redirect('login')  # Redirects if user is not logged in
 
         return fn(request, **kwargs)  # Proceeds normally if logged in
